@@ -1,0 +1,9 @@
+{
+  "name": "teslabondhu",
+  "version": "1.0.0",
+  "description": "টেসলাবন্ধু – ঢাকার রিকশা রাইড-শেয়ারিং (Node.js + SQLite, zero dependencies)",
+  "main": "server.js",
+  "scripts": { "start": "node --no-warnings server.js", "test": "node --no-warnings test.js" },
+  "engines": { "node": ">=22.5" },
+  "license": "MIT"
+}

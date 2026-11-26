@@ -1,0 +1,16 @@
+# VPS with your own domain + automatic HTTPS (Caddy). Needs .env (see .env.example)
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment: { DB_FILE: /data/teslabondhu.db, PORT: "3000" }
+    volumes: [ "appdata:/data" ]
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: [ "80:80", "443:443" ]
+    environment: { DOMAIN: "${DOMAIN}" }
+    volumes: [ "./Caddyfile:/etc/caddy/Caddyfile:ro", "caddy_data:/data" ]
+    depends_on: [ app ]
+volumes: { appdata: {}, caddy_data: {} }

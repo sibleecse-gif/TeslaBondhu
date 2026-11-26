@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: teslabondhu
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: SECRET
+        generateValue: true
+      - key: ADMIN_KEY
+        generateValue: true
+      - key: FORCE_HTTPS
+        value: "1"
+      - key: NODE_ENV
+        value: production
+      - key: SMS_PROVIDER
+        value: console # change to twilio or http, then add its variables
+      - key: DB_FILE
+        value: /data/teslabondhu.db
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1

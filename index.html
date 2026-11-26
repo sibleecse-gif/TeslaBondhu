@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>টেসলাবন্ধু — Same Route. Same Ride. Half the Cost.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Landing -->
+  <section id="page-landing" class="page active">
+    <header class="hero">
+      <div class="hero-floral"></div>
+      <nav class="nav container">
+        <div class="logo">🛺 <span>টেসলা<span class="accent">বন্ধু</span></span></div>
+        <div class="nav-links">
+          <a href="#/login" class="btn btn-ghost">লগইন</a>
+          <a href="#/register" class="btn btn-primary">রেজিস্টার</a>
+        </div>
+      </nav>
+      <div class="container hero-body">
+        <h1>একই রুট।<br>একই রাইড। <span class="hl">অর্ধেক ভাড়া।</span></h1>
+        <p class="lead">ঢাকায় রিকশা ভাড়া এখন অর্ধেক! আপনার পথের বন্ধুকে খুঁজুন, রিকশা ভাগ করুন, সাশ্রয় করুন।</p>
+        <div class="hero-cta">
+          <a href="#/register" class="btn btn-primary btn-lg">বন্ধু হোন — ফ্রি</a>
+          <a href="#/demo" class="btn btn-ghost btn-lg">ডেমো দেখুন</a>
+        </div>
+        <div class="hero-stats">
+          <div><b id="st-users">—</b><span>নিবন্ধিত বন্ধু</span></div>
+          <div><b id="st-rides">—</b><span>সফল রাইড</span></div>
+          <div><b>৳</b><span>গড় সাশ্রয় / রাইড</span></div>
+        </div>
+      </div>
+    </header>
+    <main class="container">
+      <div class="how">
+        <h2>কীভাবে কাজ করে</h2>
+        <div class="grid-3">
+          <div class="card"><div class="ic">📍</div><h3>রুট দিন</h3><p>ম্যাপে pickup ও গন্তব্য বেছে নিন, সময় ঠিক করুন।</p></div>
+          <div class="card"><div class="ic">🦓</div><h3>বন্ধু পান</h3><p>সিস্টেম একই দিকে যাওয়া সঙ্গী খুঁজবে — নাম-ফোন গোপন থাকবে।</p></div>
+          <div class="card"><div class="ic">🤝</div><h3>মিলে নিন</h3><p>দুজনেই রাজি হলে যোগাযোগ খুলবে — রিকশা ধরুন, ভাড়া ভাগ করুন।</p></div>
+        </div>
+      </div>
+      <div class="safety-note card">
+        <b>⚠️ নিরাপত্তা নোট:</b> টেসলাবন্ধু শুধু যাত্রী মেলায়। রিকশাচালক বা তৃতীয় পক্ষের নিরাপত্তার নিশ্চয়তা প্ল্যাটফর্ম দেয় না। সবসময় জনবহুল জায়গায় দেখা করুন।
+      </div>
+    </main>
+    <footer class="footer">টেসলাবন্ধু • ঢাকা • ভাষা: বাংলা</footer>
+  </section>
+
+  <!-- Auth -->
+  <section id="page-auth" class="page">
+    <div class="auth-wrap">
+      <div class="logo big">🛺 টেসলা<span class="accent">বন্ধু</span></div>
+      <div class="card auth-card" id="auth-box"></div>
+      <p class="muted center"><a href="#/">← হোমে ফিরুন</a></p>
+    </div>
+  </section>
+
+  <!-- App shell -->
+  <section id="page-app" class="page">
+    <nav class="topbar">
+      <div class="logo">🛺 <span>টেসলা<span class="accent">বন্ধু</span></span></div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="btn-bell" onclick="go('notifications')">🔔<span id="bell-dot" class="dot hidden"></span></button>
+        <button class="icon-btn" onclick="go('profile')" id="top-avatar">👤</button>
+      </div>
+    </nav>
+    <main class="app-main container" id="app-main"></main>
+    <nav class="bottombar">
+      <a data-r="dashboard" onclick="go('dashboard')">🏠<span>হোম</span></a>
+      <a data-r="search" onclick="go('search')">🧭<span>রাইড খুঁজুন</span></a>
+      <a data-r="rides" onclick="go('rides')">🛺<span>আমার রাইড</span></a>
+      <a data-r="safety" onclick="go('safety')">🛡️<span>নিরাপত্তা</span></a>
+      <a data-r="settings" onclick="go('settings')">⚙️<span>সেটিংস</span></a>
+    </nav>
+  </section>
+
+  <!-- Admin -->
+  <section id="page-admin" class="page">
+    <nav class="topbar admin-bar">
+      <div class="logo">🛠️ অ্যাডমিন প্যানেল</div>
+      <div class="topbar-right">
+        <button class="btn btn-sm btn-ghost" onclick="Admin.exit()">বের হন</button>
+      </div>
+    </nav>
+    <main class="app-main container" id="admin-main"></main>
+  </section>
+</div>
+
+<div id="toast-wrap"></div>
+<div id="modal-root"></div>
+<script src="app.js"></script>
+</body>
+</html>
